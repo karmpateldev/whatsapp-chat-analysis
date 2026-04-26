@@ -134,15 +134,10 @@ if uploaded_file is not None:
                 st.dataframe(emojis_analysis)
 
             with col2:
-                # Use a font that supports emojis
-                plt.rcParams['font.family'] = ['Segoe UI Emoji', 'sans-serif']
-                
-                fig, ax = plt.subplots()
-                ax.pie(emojis_analysis[1].head(), labels=emojis_analysis[0].head(), autopct="%0.2f")
-                st.pyplot(fig)
-                
-                # Reset back to default
-                plt.rcParams['font.family'] = 'sans-serif'
+                import plotly.express as px
+                fig = px.pie(emojis_analysis.head(), values=1, names=0)
+                # Plotly renders in the browser, so emojis will be fully colorful on any device!
+                st.plotly_chart(fig)
 
 
 
